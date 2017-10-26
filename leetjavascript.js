@@ -73,24 +73,50 @@
 // console.log(isPalindrome(123));
 // console.log(isPalindrome(14341));
 
-var efficientPalindrome = function(x) {
-  var array = (x.toString()).split('');
-  var length = array.length;
-  var halved = Math.floor(length/2);
-  for (i=0; i<= halved - 1 ; i++) {
-    var endIndex = length - 1 - i;
-    console.log(array[i] + array[endIndex]);
-    if (array[i] === array[(endIndex)]){
-      var palindrome = true;
-    } else {
-      var palindrome = false;
-    };
-  };
-  return palindrome;
+// var efficientPalindrome = function(x) {
+//   var array = (x.toString()).split('');
+//   var length = array.length;
+//   var halved = Math.floor(length/2);
+//   for (i=0; i<= halved - 1 ; i++) {
+//     var endIndex = length - 1 - i;
+//     console.log(array[i] + array[endIndex]);
+//     if (array[i] === array[(endIndex)]){
+//       var palindrome = true;
+//     } else {
+//       var palindrome = false;
+//     };
+//   };
+//   return palindrome;
+// };
+
+var findShortestSubArray = function(nums) {
+  subArrays = [];
+  frequencyArray = nums.sort(function(a, b){
+    return b.length - a.length;
+  });
+
+
+  // for (i=0; i< nums.length - 1; i++){
+  //   for (j=0; j< nums.length - 1 - i; j++){
+  //     if (nums[i] == nums[j]){
+  //       frequencyArrays.push(nums[j]);
+  //     };
+  //   };
+  // };
+
+
+
+  // shortestSubs = subArrays.sort(function(a, b){
+  //   // ASC  -> a.length - b.length
+  //   // DESC -> b.length - a.length
+  //   return a.length - b.length;
+  // });
+  // return shortestSubs[0];
+  return frequencyArray;
 };
 
 $(document).ready(function(){
   $("#submit").click(function() {
-    $('#answer').append("answer: " + efficientPalindrome(12321));
+    $('#answer').append("answer: " + findShortestSubArray([1,2,3,4,5,5,6,7,6,5]));
   });
 });
