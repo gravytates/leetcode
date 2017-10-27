@@ -115,8 +115,66 @@ var findShortestSubArray = function(nums) {
   return frequencyArray;
 };
 
+// constructor for hash table, sets hash table size and initializes array of set size
+function HashTable(size) {
+  this.buckets = Array(size)
+  this.numBuckets = this.buckets.length
+}
+
+let myHT = new HashTable(30)
+
+// constructor for hash node
+function HashNode(key, value, next) {
+  this.key = key
+  this.value = value
+  this.next = next || null
+}
+
+// hash function to take in a key and return a bucket number- used as index
+HashTable.prototype.hash = function(key) {
+  let total = 0
+  for (i = 0; i < key.length; i++){
+    total += key.charCodeAt(i)
+  }
+  let bucket = total % this.numBuckets
+  return bucket
+}
+
+// insertion!
+HashTable.prototype.insert = function(key, value) {
+  let index = this.hash(key)
+  if (!this.buckets[index]) {
+    this.buckets[index] = new HashNode(key, value)
+  } else if (this.buckets[index].key === key) {
+    this.buckets[index].value = value
+  } else {
+    let currentNode = this.buckets[index]
+    while (currentNode.next) {
+      if (currentNode.next.key === key) {
+        currentNode.next.value = value
+        return
+      }
+      currentNode = currentNode.next
+    }
+    currentNode.next = new HashNode(key, value)
+  }
+}
+
+HashTable.prototype.get = function(key) {
+  let index = this.hash(key)
+  if (!this.buckets[index]) return null
+  let currentNode = this.buckets[index]
+  while (currentNode) {
+    if (currentNode.key === key) return currentNode.value
+    currentNode = currentNode.next
+  }
+  return null
+}
+
 $(document).ready(function(){
   $("#submit").click(function() {
     $('#answer').append("answer: " + findShortestSubArray([1,2,3,4,5,5,6,7,6,5]));
   });
 });
+
+field training, then class training. people power movement from a wide range with wide range. most funding from small contributions.
