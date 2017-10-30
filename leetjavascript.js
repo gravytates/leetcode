@@ -183,10 +183,76 @@ HashTable.prototype.retrieveAll = function() {
   return allNodes
 }
 
+// are all characters in a string unique?
+function isItUnique(x){
+  var array = x.split('');
+  var unique = new Set(array);
+  if (unique.size == array.length) {
+    return true;
+  } else {
+    return false;
+  };
+}
+
+function reverseCStyle(x) {
+  var reverseArray = [];
+  var array = x.split('');
+  var arrayLength = array.length;
+  for (i=0; i <= arrayLength - 1; i++) {
+    char = array.shift();
+    reverseArray.unshift(char);
+  }
+  return reverseArray.join('');
+}
+
+function removeDups(x) {
+  var uniqueArray = [];
+  var array = x.split('');
+  var arrayLength = array.length
+
+  for (i=0; i <= arrayLength; i++) {
+    var duplicate = false;
+    for (j=0; j<= arrayLength; j++) {
+      if (array[i] == uniqueArray[j] && i !== j) {
+        duplicate = true;
+      }
+    }
+    if (duplicate == false) {
+      uniqueArray.push(array[i]);
+    }
+  }
+  return uniqueArray.join('');
+}
+
+function removeDups2(x) {
+  var array = x.split('');
+  var arrayLength = array.length
+
+  for (i=0; i<=arrayLength; i++) {
+    for(j=0; j<=arrayLength; j++) {
+      if (array[i] == array[j] && i !== j) {
+        array.splice(j, 1);
+      }
+    }
+  }
+  return array.join('')
+}
+
+function anagramChecker(x,y) {
+  var word1 = x.split('');
+  var word2 = y.split('');
+  var sorted1 = word1.sort().toString();
+  var sorted2 = word2.sort().toString();
+  if (sorted1 == sorted2) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
 $(document).ready(function(){
   $("#submit").click(function() {
-    $('#answer').append("answer: " + findShortestSubArray([1,2,3,4,5,5,6,7,6,5]));
+    $('#answer').append("answer: " + anagramChecker('lolicakes', 'sekacilol'));
   });
 });
-
-field training, then class training. people power movement from a wide range with wide range. most funding from small contributions.
