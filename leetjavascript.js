@@ -250,9 +250,20 @@ function anagramChecker(x,y) {
   }
 }
 
+// replace all spaces in a string with '%20'
+function replaceSpace(x){
+  var array = x.split('');
+  for(i=0;i<=array.length;i++){
+    if (array[i] == ' ') {
+      array.splice(i,1,'%20');
+    }
+  }
+  return array.join('');
+}
+
 
 $(document).ready(function(){
   $("#submit").click(function() {
-    $('#answer').append("answer: " + anagramChecker('lolicakes', 'sekacilol'));
+    $('#answer').append("answer: " + replaceSpace('lol i cakes say'));
   });
 });
