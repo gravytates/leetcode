@@ -261,9 +261,29 @@ function replaceSpace(x){
   return array.join('');
 }
 
+// For an NxN matrix, rotate matrix 90 degrees. Where x is an array of arrays
+function rotateMatrix(x){
+  array = []
+  for(i=0;i<=x.length -1;i++){
+    a = x[i][0]
+    b = x[i][1]
+    function swap(a,b,c){
+      if (b == 0){
+        c = 'blue';
+      } else {
+        c = 'red';
+      }
+      array.push(new Array(b,a,c));
+    };
+    swap(a,b);
+  }
+  console.log(array);
+  return array;
+}
+
 
 $(document).ready(function(){
   $("#submit").click(function() {
-    $('#answer').append("answer: " + replaceSpace('lol i cakes say'));
+    $('#answer').append("answer: " + rotateMatrix([[0,0,'blue'],[0,1,'blue'],[1,0,'red'],[1,1,'red']]));
   });
 });
