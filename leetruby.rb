@@ -109,4 +109,27 @@ def palindrome(x)
   end
   p result
 end
-palindrome('racecar')
+# palindrome('racecar')
+
+def self_dividing(i,j)
+  output = []
+
+  if i <= j && j<= 10000
+    (i..j).each do |n|
+      int_array = n.to_s.split('')
+      divisible = 0
+      int_array.each do |m|
+        if m.to_i == 0
+          divisible = 1
+        elsif n % m.to_i != 0
+          divisible = 1
+        end
+      end
+      if divisible == 0
+        output.push n
+      end
+    end
+  end
+  p output
+end
+# self_dividing(1,22)
