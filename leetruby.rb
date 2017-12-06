@@ -133,3 +133,92 @@ def self_dividing(i,j)
   p output
 end
 # self_dividing(1,22)
+
+def max_island_area(grid)
+  islands = [0]
+  def island_size(grid,row_index,unit_index,a)
+    b = []
+    #grid[row_index] should be row_index index, grid[row_index][unit_index] should be specific unit_index index along row_index
+    if unit_index < grid[row_index].length && unit_index >= 0 && row_index < grid.length && grid[row_index][unit_index] == 1#search within bounds
+      # p [row_index, unit_index]
+      grid[row_index][unit_index] = 0
+      a += 1 #replace value
+      p a
+      b.push a
+
+      island_size(grid, row_index, (unit_index - 1), a)
+      island_size(grid, row_index, (unit_index + 1), a)
+      island_size(grid, (row_index + 1), unit_index, a)
+      island_size(grid, (row_index - 1), unit_index, a)
+    else
+      return a
+    end
+
+  end
+
+  grid.each do |row|
+    row.each do |unit|
+      if unit == 1
+        area = island_size(grid, grid.index(row), row.index(unit), 1)
+        islands.push area
+          #if you find an island, call function to find size of island.
+          #args: the grid, row index, unit index of row, and init area: 1
+      end
+    end
+  end
+
+  # island_size(grid)
+  p islands #sorts islands by area and returns largest value
+end
+max_island_area([[0,0,1,0,0,0,0,1,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,1,1,1,0,0,0],
+                 [0,1,1,0,1,0,0,0,0,0,0,0,0],
+                 [0,1,0,0,1,1,0,0,1,0,1,0,0],
+                 [0,1,0,0,1,1,0,0,1,1,1,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,1,0,0],
+                 [0,0,0,0,0,0,0,1,1,1,0,0,0],
+                 [0,0,0,0,0,0,0,1,1,0,0,0,0]])
+
+# junk
+# if grid[row_index][unit_index-1] == 1 #dfs left branch
+#   p 'left is one'
+#   grid[row_index][unit_index-1] = 0
+#   a += 1
+#   island_size(grid, row_index, (unit_index-1), a)
+#
+#   if grid[row_index][unit_index+1] == 1
+#     p 'left is one and right is one'
+#     grid[row_index][unit_index+1] = 0
+#     a += 1
+#     island_size(grid, row_index, (unit_index+1), a)
+#     #search right spaces
+#   end
+#   if row_index + 1 < grid.length && grid[row_index+1][unit_index] == 1
+#     p 'left is one, down is one'
+#     grid[row_index+1][unit_index] = 0
+#     a += 1
+#     island_size(grid, (row_index+1), unit_index, a)
+#     #drop down a level?
+#   end
+#   #search all left spaces
+# elsif grid[row_index][unit_index+1] == 1 #dfs right branch
+#   p 'left is zero, right is one'
+#   grid[row_index][unit_index+1] = 0
+#   a += 1
+#   island_size(grid, row_index, (unit_index+1), a)
+#
+#   if row_index + 1 < grid.length && grid[row_index+1][unit_index] == 1
+#     p 'right is one, down is one'
+#     grid[row_index+1][unit_index] = 0
+#     a += 1
+#     island_size(grid, (row_index+1), unit_index, a)
+#   end
+# elsif row_index + 1 < grid.length && grid[row_index+1][unit_index] == 1 #dfs lower branch
+#   p 'left is zero, right is zero, down is one'
+#   grid[row_index+1][unit_index] = 0
+#   a += 1
+#   island_size(grid, (row_index+1), unit_index, a)
+# else
+#   p 'end of island'
+#   p a
+# end
