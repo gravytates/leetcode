@@ -1,16 +1,39 @@
-// var twoSum = function(nums, target){
-//   indeces = []
-//   nums.forEach(function(a){
-//     nums.forEach(function(b){
-//       if(a !== b && a + b == target){
-//         indeces.push(nums.indexOf(a));
-//         indeces.push(nums.indexOf(b));
-//       };
-//     });
-//   });
-//   return [indeces[0], indeces[1]];
-//   // return indeces;
-// };
+var twoSum = function(nums, target){
+  // version 1:
+  // indeces = []
+  // nums.forEach(function(a){
+  //   nums.forEach(function(b){
+  //     if(a !== b && a + b == target){
+  //       indeces.push(nums.indexOf(a));
+  //       indeces.push(nums.indexOf(b));
+  //     };
+  //   });
+  // });
+  // return [indeces[0], indeces[1]];
+
+  // version 2:
+  // for (i = 0; i < nums.length; i++)  {
+  //     for (n = i+1; n < nums.length; n++) {
+  //         if (nums[i] + nums[n] == target) {
+  //             return [i, n]
+  //         }
+  //     }
+  // }
+
+  // version 3 (best):
+  var hash = {};
+  for (i = 0; i < nums.length; i++) {
+    hash[nums[i]] = i;
+  }
+
+  for (i = 0; i < nums.length; i++) {
+    complement = target - nums[i];
+    if (complement in hash && hash[complement] != i) {
+      return [i, hash[complement]]
+    }
+  }
+  
+};
 // console.log(twoSum([2, 7, 101, 95, 1, 2, 4, 3], 5));
 
 // Doesn't cover all edge cases yet
