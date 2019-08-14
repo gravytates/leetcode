@@ -304,29 +304,29 @@ function rotateMatrix(x){
   return array;
 }
 
-function reverseInteger(x) {
+//success but ugly
+var reverse = function (x) {
+  if (x === 0) {
+    return 0;
+  }
   var stringInteger = x.toString();
   var stringIntegerArray = stringInteger.split('');
   var resultArray = [];
   var length = stringIntegerArray.length;
-  for (i = 0; i <= length; i++) {
+  for (i = 0; i < length; i++) {
     var lastElement = stringIntegerArray.pop();
     resultArray.push(lastElement);
   }
-  for (i = 0; i <= resultArray.length; i++) {
-    if (resultArray[0] == "0") {
-      resultArray.shift();
-    }
-  }
-  var lastEl = resultArray.pop();
 
-  if (lastEl == "-" || lastEl == "–") {
-    resultArray.unshift("–");
-  } else {
-    resultArray.push(lastEl);
+  let resultString = resultArray.join('')
+  let int = parseInt(resultString);
+  if (int >= Math.pow(2, 31) - 1 || int <= Math.pow(-2, 31)) {
+    return 0;
   }
-  resultString = resultArray.join('')
-  return parseInt(resultString);
+  if (int < 0) {
+    int *= -1;
+  }
+  return int;
 }
 
 $(document).ready(function(){
