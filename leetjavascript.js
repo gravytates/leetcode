@@ -304,6 +304,30 @@ function rotateMatrix(x){
   return array;
 }
 
+function reverseInteger(x) {
+  var stringInteger = x.toString();
+  var stringIntegerArray = stringInteger.split('');
+  var resultArray = [];
+  var length = stringIntegerArray.length;
+  for (i = 0; i <= length; i++) {
+    var lastElement = stringIntegerArray.pop();
+    resultArray.push(lastElement);
+  }
+  for (i = 0; i <= resultArray.length; i++) {
+    if (resultArray[0] == "0") {
+      resultArray.shift();
+    }
+  }
+  var lastEl = resultArray.pop();
+
+  if (lastEl == "-" || lastEl == "–") {
+    resultArray.unshift("–");
+  } else {
+    resultArray.push(lastEl);
+  }
+  resultString = resultArray.join('')
+  return parseInt(resultString);
+}
 
 $(document).ready(function(){
   $("#submit").click(function() {
