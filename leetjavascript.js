@@ -282,20 +282,37 @@ var reverse = function (x) {
   return int;
 }
 
+var romanToInt = function (romanNumerals) {
+  numerals = {
+    "I": 1,
+    "V": 5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 1000
+  };
+
+  var number = 0;
+
+  for (i = 0; i < romanNumerals.length; i++) {
+    numerals[romanNumerals[i]] < numerals[romanNumerals[i + 1]] ? number -= numerals[romanNumerals[i]] : number += numerals[romanNumerals[i]]
+  }
+  return number;
+}
+
 /**
  * @param {string} s
  * @return {number}
  */
 var romanToInt = function (romanNumerals) {
-  inputRomanNumerals = romanNumerals.split('');
-
   var total = 0;
 
-  for (i = 0; i < inputRomanNumerals.length; i++) {
-    numeral = inputRomanNumerals[i];
+  for (i = 0; i < romanNumerals.length; i++) {
+    numeral = romanNumerals[i];
     switch (numeral) {
       case 'I':
-        if (inputRomanNumerals[i + 1] === 'V' || inputRomanNumerals[i + 1] === 'X') {
+        if (romanNumerals[i + 1] === 'V' || romanNumerals[i + 1] === 'X') {
           total--;
         } else {
           total++;
@@ -305,7 +322,7 @@ var romanToInt = function (romanNumerals) {
         total += 5;
         break;
       case 'X':
-        if (inputRomanNumerals[i + 1] === 'L' || inputRomanNumerals[i + 1] === 'C') {
+        if (romanNumerals[i + 1] === 'L' || romanNumerals[i + 1] === 'C') {
           total -= 10;
         } else {
           total += 10;
@@ -315,7 +332,7 @@ var romanToInt = function (romanNumerals) {
         total += 50;
         break;
       case 'C':
-        if (inputRomanNumerals[i + 1] === 'D' || inputRomanNumerals[i + 1] === 'M') {
+        if (romanNumerals[i + 1] === 'D' || romanNumerals[i + 1] === 'M') {
           total -= 100;
         } else {
           total += 100;
