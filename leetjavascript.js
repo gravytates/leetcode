@@ -36,53 +36,6 @@ var twoSum = function(nums, target){
 };
 // console.log(twoSum([2, 7, 101, 95, 1, 2, 4, 3], 5));
 
-// Doesn't cover all edge cases yet
-// var reverse = function(x) {
-//   var answer = '';
-//   var newArray = [];
-//   var array = (x.toString()).split('');
-//
-//   while(array.length>1){
-//     newArray.push(array.pop());
-//     if (array.length == 1 && array[0] == '-'){
-//       newArray.unshift(array[0]);
-//     };
-//   };
-//
-//   answer = parseInt(newArray.join(''));
-//   if(Math.abs(answer) > 2**53 - 1){
-//     return 0;
-//   } else {
-//     return answer;
-//   };
-// };
-// console.log(reverse(-900000));
-
-// reverse the integer
-
-// var reverse = function(x) {
-//   var answer = '';
-//   var newArray = [];
-//   var array = (x.toString()).split('');
-//
-//   while(array.length>1){
-//
-//     newArray.push(array.pop());
-//     if (array.length == 1 && array[0] == '-'){
-//       newArray.unshift(array[0]);
-//     };
-//   };
-//
-//   answer = parseInt(newArray.join(''));
-//   if(Math.abs(answer) > 2**53 - 1){
-//     return 0;
-//   } else {
-//     return answer;
-//   };
-// };
-// console.log(reverse(-900000));
-// console.log(reverse(123));
-
 // var isPalindrome = function(x) {
 //   var array = (x.toString()).split('');
 //   var reverseArray = array.reverse();
@@ -327,6 +280,59 @@ var reverse = function (x) {
     int *= -1;
   }
   return int;
+}
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function (romanNumerals) {
+  inputRomanNumerals = romanNumerals.split('');
+
+  var total = 0;
+
+  for (i = 0; i < inputRomanNumerals.length; i++) {
+    numeral = inputRomanNumerals[i];
+    switch (numeral) {
+      case 'I':
+        if (inputRomanNumerals[i + 1] === 'V' || inputRomanNumerals[i + 1] === 'X') {
+          total--;
+        } else {
+          total++;
+        }
+        break;
+      case 'V':
+        total += 5;
+        break;
+      case 'X':
+        if (inputRomanNumerals[i + 1] === 'L' || inputRomanNumerals[i + 1] === 'C') {
+          total -= 10;
+        } else {
+          total += 10;
+        }
+        break;
+      case 'L':
+        total += 50;
+        break;
+      case 'C':
+        if (inputRomanNumerals[i + 1] === 'D' || inputRomanNumerals[i + 1] === 'M') {
+          total -= 100;
+        } else {
+          total += 100;
+        }
+        break;
+      case 'D':
+        total += 500;
+        break;
+      case 'M':
+        total += 1000;
+        break;
+      default:
+        continue;
+    }
+  }
+
+  return total;
 }
 
 $(document).ready(function(){
