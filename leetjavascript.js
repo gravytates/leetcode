@@ -364,6 +364,51 @@ var singleNumber = function (nums) {
   }
 };
 
+/**
+ * @param {string} address
+ * @return {string}
+ */
+var defangIPaddr = function (address) {
+  var addressArray = address.split('');
+  var defangedArray = [];
+  for (var i = 0; i < addressArray.length; i++) {
+    if (addressArray[i] === '.') {
+      defangedArray.push("[.]");
+    } else {
+      defangedArray.push(addressArray[i]);
+    }
+  }
+  return defangedArray.join('');
+};
+
+/**
+ * @param {string} J
+ * @param {string} S
+ * @return {number}
+ */
+var numJewelsInStones = function (J, S) {
+  let sArray = S.split('');
+  var jewels = 0;
+  // yay, hash works well
+  // let jArray = J.split('');
+  // var jewelHash = {};
+  // for (var i = 0; i < jArray.length; i++) {
+  //   jewelHash[jArray[i]] = 0;
+  // }
+  // for (var i = 0; i < sArray.length; i++) {
+  //   if (sArray[i] in jewelHash) {
+  //     jewels++;
+  //   }
+  // }
+  // includes works well also, needs less memory but not as fast
+  for (var i = 0; i < sArray.length; i++) {
+    if (J.includes(sArray[i])) {
+      jewels++;
+    }
+  }
+  return jewels;
+};
+
 $(document).ready(function(){
   $("#submit").click(function() {
     $('#answer').append("answer: " + rotateMatrix([[0,0,'blue'],[0,1,'blue'],[1,0,'red'],[1,1,'red']]));
