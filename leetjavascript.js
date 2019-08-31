@@ -440,6 +440,17 @@ var rangeSumBST = function (root, L, R) {
   dfs(root)
   return answer;
 };
+// depth first search for reference
+var dfs = function (node) {
+  if (node) {
+    if (node.left < node.val) {
+      dfs(node.left)
+    }
+    if (node.right > node.val) {
+      dfs(node.right)
+    }
+  }
+}
 
 
 $(document).ready(function(){
