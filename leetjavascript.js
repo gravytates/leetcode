@@ -409,6 +409,39 @@ var numJewelsInStones = function (J, S) {
   return jewels;
 };
 
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} L
+ * @param {number} R
+ * @return {number}
+ */
+var rangeSumBST = function (root, L, R) {
+  answer = 0;
+  var dfs = function (node) {
+    if (node) {
+      if ((L <= node.val) && (node.val <= R)) {
+        answer += node.val;
+      }
+      if (L < node.val) {
+        dfs(node.left)
+      }
+      if (R > node.val) {
+        dfs(node.right)
+      }
+    }
+  }
+  dfs(root)
+  return answer;
+};
+
+
 $(document).ready(function(){
   $("#submit").click(function() {
     $('#answer').append("answer: " + rotateMatrix([[0,0,'blue'],[0,1,'blue'],[1,0,'red'],[1,1,'red']]));
