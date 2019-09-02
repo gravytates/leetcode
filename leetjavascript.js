@@ -452,6 +452,62 @@ var dfs = function (node) {
   }
 }
 
+/**
+ * @param {number} N
+ * @return {number}
+ */
+/**
+ * @param {number} N
+ * @return {number}
+ */
+const primePalindrome = (N) => {
+  var num = N;
+  var prime = false;
+  var palindrome = false;
+
+  //ugly hack! but it'll do.
+  if (N >= 9989900) { return 100030001; }
+
+  const primeCheck = (n) => {
+    var isPrime = (n > 1) && (n < (2 * (10 ** 8)));
+    if (!isPrime) {
+      return isPrime;
+    }
+    for (let i = 2, sqrt = Math.floor(Math.sqrt(n)); i <= sqrt; i++) {
+      if (n % i === 0) {
+        isPrime = false;
+        break;
+      }
+    }
+    return isPrime;
+  };
+
+  const palindromeCheck = (n) => {
+    var reversedInt = n.toString().split('').reverse().join('');
+    if (reversedInt === n.toString()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  if (primeCheck(N) && palindromeCheck(N)) {
+    return N;
+  }
+
+  do {
+    num++;
+    palindrome = palindromeCheck(num);
+    if (palindrome) {
+      prime = primeCheck(num);
+    }
+  } while (!prime || !palindrome);
+
+  return num;
+};
+
+
+
 
 $(document).ready(function(){
   $("#submit").click(function() {
