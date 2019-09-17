@@ -516,6 +516,7 @@ const removeOuterParentheses = (S) => {
   var closedParens = 0;
   var sArray = S.split('');
   var newArray = [...sArray];
+  var splices = 0;
 
   for (let i = 0; i < sArray.length; i++) {
     let s = sArray[i];
@@ -523,15 +524,16 @@ const removeOuterParentheses = (S) => {
       ++openedParens;
       if (balancedParens) {
         balancedParens = false;
-        newArray.splice(i,1);
-        i--;
+        newArray.splice(i-splices,1);
+        splices++;
+
       }
     } else if (s == ")") {
       ++closedParens;
       if (openedParens == closedParens) {
         balancedParens = true;
-        newArray.splice(i,1);
-        i--;
+        newArray.splice(i-splices,1);
+        splices++;
         openedParens = 0;
         closedParens = 0;
       }
