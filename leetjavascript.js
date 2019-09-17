@@ -506,6 +506,40 @@ const primePalindrome = (N) => {
   return num;
 };
 
+/**
+ * @param {string} S
+ * @return {string}
+ */
+const removeOuterParentheses = (S) => {
+  var balancedParens = true;
+  var openedParens = 0;
+  var closedParens = 0;
+  var sArray = S.split('');
+  var newArray = [...sArray];
+
+  for (let i = 0; i < sArray.length; i++) {
+    let s = sArray[i];
+    if (s == "(") {
+      ++openedParens;
+      if (balancedParens) {
+        balancedParens = false;
+        newArray.splice(i,1);
+        i--;
+      }
+    } else if (s == ")") {
+      ++closedParens;
+      if (openedParens == closedParens) {
+        balancedParens = true;
+        newArray.splice(i,1);
+        i--;
+        openedParens = 0;
+        closedParens = 0;
+      }
+    }
+  }
+  return newArray.join('');
+};
+
 
 
 
