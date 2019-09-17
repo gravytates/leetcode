@@ -511,32 +511,73 @@ const primePalindrome = (N) => {
  * @return {string}
  */
 const removeOuterParentheses = (S) => {
-  var balancedParens = true;
-  var openedParens = 0;
-  var closedParens = 0;
-  var sArray = S.split('');
+  // OG solution.
+  // var balancedParens = true;
+  // var openedParens = 0;
+  // var closedParens = 0;
+  // var sArray = S.split('');
 
-  for (let i = 0; i < sArray.length; i++) {
-    let s = sArray[i];
-    if (s == "(") {
-      ++openedParens;
-      if (balancedParens) {
-        balancedParens = false;
-        sArray.splice(i,1);
-        i--;
-      }
-    } else if (s == ")") {
-      ++closedParens;
-      if (openedParens == closedParens) {
-        balancedParens = true;
-        sArray.splice(i,1);
-        i--;
-        openedParens = 0;
-        closedParens = 0;
+  // for (let i = 0; i < sArray.length; i++) {
+  //   let s = sArray[i];
+  //   if (s == "(") {
+  //     ++openedParens;
+  //     if (balancedParens) {
+  //       balancedParens = false;
+  //       sArray.splice(i,1);
+  //       i--;
+  //     }
+  //   } else if (s == ")") {
+  //     ++closedParens;
+  //     if (openedParens == closedParens) {
+  //       balancedParens = true;
+  //       sArray.splice(i,1);
+  //       i--;
+  //       openedParens = 0;
+  //       closedParens = 0;
+  //     }
+  //   }
+  // }
+  // return sArray.join('');
+  // refactored OG solution using what I learned
+    var parens = 0;
+    var sArray = S.split('');
+
+    for (let i = 0; i < sArray.length; i++) {
+      let s = sArray[i];
+      if (s == "(") {
+        if (!parens) {
+          sArray.splice(i, 1);
+          i--;
+        }
+        parens++;
+      } else {
+        parens--;
+        if (!parens) {
+          sArray.splice(i, 1);
+          i--;
+        }
       }
     }
-  }
-  return sArray.join('');
+    return sArray.join('');
+  
+  //more clever than I: using counter ++ and -- to determine eveness of parens and building rather than splicing. 
+  // source inspiration for solution 2 refactor.
+  // let parenCount = 0
+  // let stringResult = ""
+  // for (const s of S) {
+  //   if (s === "(") {
+  //     if (parenCount) {
+  //       stringResult += s;
+  //     }
+  //     parenCount++;
+  //   } else {
+  //     parenCount--;
+  //     if (parenCount) {
+  //       stringResult += s
+  //     }
+  //   }
+  // }
+  // return stringResult;
 };
 
 
