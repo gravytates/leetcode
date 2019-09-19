@@ -611,6 +611,37 @@ const fizzBuzz = (n) => {
   return a;
 };
 
+/**
+ * @param {character[]} s
+ * @return {void} Do not return anything, modify s in-place instead.
+ */
+// Do not allocate extra space for another array, 
+// you must do this by modifying the input array in -place with O(1) extra memory.
+var reverseString = function (s) {
+  return s = s^2 //nope
+};
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var countPrimes = function (n) {
+  primes = [];
+  for (var i = 2; i < n; i++) {
+    let prime = true;
+    for (var m = 2, sqrt = Math.floor(Math.sqrt(i)); m <= sqrt; m++) {
+      if (i % m === 0) {
+        prime = false;
+        break;
+      }
+    }
+    if (prime) {
+      primes.push(i)
+    }
+  }
+  return primes.length;
+};
+
 
 $(document).ready(function(){
   $("#submit").click(function() {
