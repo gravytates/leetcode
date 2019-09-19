@@ -526,7 +526,7 @@ const removeOuterParentheses = (S) => {
   //       sArray.splice(i,1);
   //       i--;
   //     }
-  //   } else if (s == ")") {
+  //   } else {
   //     ++closedParens;
   //     if (openedParens == closedParens) {
   //       balancedParens = true;
@@ -580,7 +580,36 @@ const removeOuterParentheses = (S) => {
   // return stringResult;
 };
 
+/**
+ * @param {string} s
+ * @return {number}
+ */
+const numDecodings = (s) => {
+  a = s.split('')
+  for (let i = 0; i < a.length; i++) {
+    return "fuck"; 
+  }
+};
 
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+const fizzBuzz = (n) => {
+  let a = [];
+  for (var i = 1; i <= n; i++) {
+    if (i % 15 === 0) {
+      a.push("FizzBuzz");
+    } else if (i % 3 === 0) {
+      a.push("Fizz");
+    } else if (i % 5 === 0) {
+      a.push("Buzz");
+    } else {
+      a.push(i.toString());
+    }
+  }
+  return a;
+};
 
 
 $(document).ready(function(){
