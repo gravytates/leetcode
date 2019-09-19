@@ -642,6 +642,20 @@ var countPrimes = function (n) {
   return primes.length;
 };
 
+/**
+ * @param {number} N
+ * @return {number}
+ */
+var fibonacci = function (N) {
+  if (N < 2) return N;
+  var fn = 0;
+  var first = 0;
+  var second = 1;
+  for (var i = 2; i <= N; i++) {
+    [first, second] = [second, first + second]
+  }
+  return second;
+};
 
 $(document).ready(function(){
   $("#submit").click(function() {
