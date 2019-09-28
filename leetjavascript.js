@@ -657,6 +657,28 @@ var fibonacci = function (N) {
   return second;
 };
 
+/**
+ * @param {string[]} words
+ * @return {number}
+ */
+const uniqueMorseRepresentations = (words) => {
+  let morseLetters = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."]
+  let alphaLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  var translations = []
+
+  for (var i = 0; i < words.length; i++) {
+    let letters = words[i].split('');
+    let translationArray = []
+    for (var n = 0; n < letters.length; n++) {
+      var morseIndex = alphaLetters.indexOf(letters[n]);
+      translationArray.push(morseLetters[morseIndex]);
+    }
+    var translation = translationArray.join('');
+    translations.push(translation);
+  }
+  return [... new Set(translations)].length;
+};
+
 $(document).ready(function(){
   $("#submit").click(function() {
     $('#answer').append("answer: " + rotateMatrix([[0,0,'blue'],[0,1,'blue'],[1,0,'red'],[1,1,'red']]));
