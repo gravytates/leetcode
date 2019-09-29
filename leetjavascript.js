@@ -696,6 +696,29 @@ const flipAndInvertImage = (A) => {
   return invertedFlippedImages;
 };
 
+/**
+ * @param {string} paragraph
+ * @param {string[]} banned
+ */
+const mostCommonWord = (paragraph, banned) => {
+  let wordFreq = {}
+  let parArray = paragraph.split(/(?:,| )+/);
+  parArray.forEach(function (word) {
+    formattedWord = word.toLowerCase().replace(/[^\w\s]|_/g, "")
+      .replace(/\s+/g, " ");
+    if (!banned.includes(formattedWord)) {
+      if (!wordFreq[formattedWord]) {
+        wordFreq[formattedWord] = 1;
+      } else {
+        wordFreq[formattedWord] += 1
+      }
+    }
+  });
+  return Object.keys(wordFreq).reduce((a, b) => wordFreq[b] > wordFreq[a] ? b : a);
+};
+
+
+
 $(document).ready(function(){
   $("#submit").click(function() {
     $('#answer').append("answer: " + rotateMatrix([[0,0,'blue'],[0,1,'blue'],[1,0,'red'],[1,1,'red']]));
