@@ -702,8 +702,10 @@ const flipAndInvertImage = (A) => {
  */
 const mostCommonWord = (paragraph, banned) => {
   let wordFreq = {}
+  //split paragraph into words by spaces and commas
   let parArray = paragraph.split(/(?:,| )+/);
   parArray.forEach(function (word) {
+    //remove all whitespace and only return alphanumeric characters
     formattedWord = word.toLowerCase().replace(/[^\w\s]|_/g, "")
       .replace(/\s+/g, " ");
     if (!banned.includes(formattedWord)) {
