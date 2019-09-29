@@ -684,36 +684,16 @@ const uniqueMorseRepresentations = (words) => {
  * @return {number[][]}
  */
 const flipAndInvertImage = (A) => {
-  const flipImages = (B) => {
-    let flippedImages = [];
-    for (var n = 0; n < B.length; n++) {
-      let flippedRow = [];
-      let row = B[n];
-      for (var i = 1; i <= row.length; i++) {
-        // flippedRow.push(row[i * -1]);
-        index = row.length - i;
-        flippedRow.push(row[index])
-      }
-      flippedImages.push(flippedRow);
+  let invertedFlippedImages = [];
+  for (var n = 0; n < C.length; n++) {
+    let invertedRow = []
+    let reverseRow = C[n].reverse();
+    for (var i = 0; i < row.length; i++) {
+      reverseRow[i] ? invertedRow.push(0) : invertedRow.push(1);
     }
-    return flippedImages;
+    invertedFlippedImages.push(invertedRow);
   }
-
-  const invertImages = (C) => {
-    let invertedImages = [];
-    for (var n = 0; n < C.length; n++) {
-      let invertedRow = []
-      let row = C[n];
-      for (var i = 0; i < row.length; i++) {
-        row[i] ? invertedRow.push(0) : invertedRow.push(1);
-      }
-      invertedImages.push(invertedRow);
-    }
-    return invertedImages;
-  }
-
-  let flippedImages = flipImages(A);
-  return invertImages(flippedImages);
+  return invertedFlippedImages;
 };
 
 $(document).ready(function(){
