@@ -719,6 +719,13 @@ const mostCommonWord = (paragraph, banned) => {
   return Object.keys(wordFreq).reduce((a, b) => wordFreq[b] > wordFreq[a] ? b : a);
 };
 
+const uniqueOccurrences = (arr) => {
+  let freq = {}
+  arr.forEach(function (int) {
+    !freq[int] ? freq[int] = 0 : freq[int]++;
+  });
+  return Object.values(freq).length === [...new Set(Object.values(freq))].length;
+}
 
 
 $(document).ready(function(){
