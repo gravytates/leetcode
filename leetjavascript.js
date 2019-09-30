@@ -727,6 +727,22 @@ const uniqueOccurrences = (arr) => {
   return Object.values(freq).length === [...new Set(Object.values(freq))].length;
 }
 
+/**
+ * @param {string[]} emails
+ * @return {number}
+ */
+var numUniqueEmails = function (emails) {
+  newEmails = []
+  for (var i = 0; i < emails.length; i++) {
+    var email = emails[i];
+    var local = email.split('@')[0].split('+')[0].split('.').join('')
+    var domain = '@' + email.split('@')[1]
+    newEmail = local + domain
+    newEmails.push(newEmail);
+  }
+  return [...new Set(newEmails)].length
+};
+
 
 $(document).ready(function(){
   $("#submit").click(function() {
