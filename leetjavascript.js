@@ -747,18 +747,16 @@ var numUniqueEmails = function (emails) {
  * @param {number[]} A
  * @return {number[]}
  */
-var sortArrayByParity = function (A) {
-  evens = [];
-  odds = [];
+const sortArrayByParity = (A) => {
+  result = [];
   for (let i = 0; i < A.length; i++) {
     if (A[i] % 2 === 0) {
-      evens.push(A[i]);
+      result.unshift(A[i]);
     } else {
-      odds.push(A[i]);
+      result.push(A[i]);
     }
   }
-  evens.push(...odds);
-  return evens;
+  return result;
 };
 
 
