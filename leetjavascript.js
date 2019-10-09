@@ -743,6 +743,24 @@ var numUniqueEmails = function (emails) {
   return [...new Set(newEmails)].length
 };
 
+/**
+ * @param {number[]} A
+ * @return {number[]}
+ */
+var sortArrayByParity = function (A) {
+  evens = [];
+  odds = [];
+  for (let i = 0; i < A.length; i++) {
+    if (A[i] % 2 === 0) {
+      evens.push(A[i]);
+    } else {
+      odds.push(A[i]);
+    }
+  }
+  evens.push(...odds);
+  return evens;
+};
+
 
 $(document).ready(function(){
   $("#submit").click(function() {
