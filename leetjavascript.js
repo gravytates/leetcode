@@ -776,6 +776,18 @@ var repeatedNTimes = function (A) {
   return Object.keys(freq).find(key => freq[key] === lengthN)
 };
 
+//alternate derp
+var repeatedNTimes = function (A) {
+  freq = {}
+  for (let i = 0; i < A.length; i++) {
+    if (freq[A[i]]) {
+      return A[i]
+    } else {
+      freq[A[i]] = 1
+    }
+  }
+};
+
 
 $(document).ready(function(){
   $("#submit").click(function() {
