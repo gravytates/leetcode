@@ -759,6 +759,23 @@ const sortArrayByParity = (A) => {
   return result;
 };
 
+/**
+ * @param {number[]} A
+ * @return {number}
+ */
+var repeatedNTimes = function (A) {
+  freq = {}
+  lengthN = A.length / 2
+  for (let i = 0; i < A.length; i++) {
+    if (!freq[A[i]]) {
+      freq[A[i]] = 1
+    } else {
+      freq[A[i]] += 1
+    }
+  }
+  return Object.keys(freq).find(key => freq[key] === lengthN)
+};
+
 
 $(document).ready(function(){
   $("#submit").click(function() {
